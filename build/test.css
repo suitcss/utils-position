@@ -1,7 +1,5 @@
 /** @define Test */
 
-/*! suitcss-components-test v0.1.1 | MIT License | github.com/suitcss */
-
 /**
  * The 'describe' CSS counter
  */
@@ -10,7 +8,7 @@
   counter-reset: test-describe;
 }
 
-.Test-describe:before {
+.Test-describe::before {
   content: counter(test-describe);
   counter-increment: test-describe;
 }
@@ -23,7 +21,7 @@
   counter-reset: test-it;
 }
 
-.Test-it:before {
+.Test-it::before {
   content: counter(test-describe) "." counter(test-it);
   counter-increment: test-it;
 }
@@ -33,12 +31,12 @@
  */
 
 .Test-title {
-  font-size: 2em;
-  font-family: sans-serif;
-  padding: 20px;
-  margin: 20px 0;
   background: #eee;
   color: #999;
+  font-family: sans-serif;
+  font-size: 2em;
+  margin: 20px 0;
+  padding: 20px;
 }
 
 /**
@@ -65,8 +63,8 @@
  * The counter styles
  */
 
-.Test-describe:before,
-.Test-it:before {
+.Test-describe::before,
+.Test-it::before {
   color: #999;
   display: inline-block;
   margin-right: 10px;
@@ -74,21 +72,31 @@
   text-transform: uppercase;
 }
 
+.u-posFit,
+.u-posAbsoluteCenter,
 .u-posAbsolute {
   position: absolute !important;
 }
 
 /**
- * Pins to all corners by default. But when a width and/or height are
- * provided, the element will be centered in its nearest relatively-positioned
+ * Element will be centered to its nearest relatively-positioned
  * ancestor.
  */
 
+.u-posFixedCenter,
 .u-posAbsoluteCenter {
+  left: 50% !important;
+  top: 50% !important;
+  -webkit-transform: translate(-50%, -50%) !important;
+      -ms-transform: translate(-50%, -50%) !important;
+          transform: translate(-50%, -50%) !important;
+}
+
+.u-posFit,
+.u-posFullScreen {
   bottom: 0 !important;
   left: 0 !important;
   margin: auto !important;
-  position: absolute !important;
   right: 0 !important;
   top: 0 !important;
 }
@@ -98,11 +106,12 @@
  *    reasons.
  */
 
+.u-posFullScreen,
+.u-posFixedCenter,
 .u-posFixed {
-  position: fixed !important;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  /* 1 */
+          backface-visibility: hidden; /* 1 */
+  position: fixed !important;
 }
 
 .u-posRelative {
@@ -112,3 +121,4 @@
 .u-posStatic {
   position: static !important;
 }
+
